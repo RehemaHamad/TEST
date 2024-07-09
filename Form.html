@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>  
+    </style>
+</head>
+<body>
+    <h1><u>Form</u></h1>
+    <h1>Link Generator</h1>
+    <label for="range">Start Range:</label>
+  <input type="text" id="range" name="range" value="1">
+  <label for="erange">End Range:</label>
+  <input type="text" id="erange" name="erange" value="1"><br><br>
+  <input type="button" value="display Table"><br><br><br>
+  <label for="valid">Valid Range:1-7</label><br><br><br>
+  <h1><u>After Providing a Valid Range and Clicking on the Button</u></h1><br><br><br>
+  
+
+
+    <h1>Generate Links Table</h1>
+    <form id="linkForm">
+       >Generate Table</button>
+    </form>
+    <label for="range">Start Range:</label>
+  <input type="text" id="range" name="range" value="1">
+  <label for="erange">End Range:</label>
+  <input type="text" id="erange" name="erange" value="1"><br><br>
+  <input type="button" value="display Table"><br><br><br>
+  <label for="valid">Valid Range:1-7</label><br><br><br>
+
+    <p id="message"></p>
+
+    <table id="linkTable">
+        <thead>
+            <tr>
+                
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        let data = ["sylabbus.html", "p1.html", "p2.html", "style.html", "email.html", "system.html", "process.html"];
+        
+        function generateTable() {
+            const range = parseInt(document.getElementById("range").value);
+            const erange = parseInt(document.getElementById("erange").value);
+            const tableBody = document.querySelector("#linkTable tbody");
+            const message = document.getElementById("message");
+            tableBody.innerHTML = "";
+            message.innerHTML = "";
+
+            if (isNaN(range) || isNaN(erange) || range < 1 || erange < 1 || range > data.length || erange > data.length || range > erange) {
+                message.innerHTML = `Invalid range, valid range: 1 to ${data.length}`;
+                return;
+            }
+
+            for (let i = range- 1; i < erange; i++) {
+                const row = document.createElement("tr");
+                const cellLink = document.createElement("td");
+                const cellPage = document.createElement("td");
+                const link = document.createElement("a");
+                link.href = data[i];
+                link.textContent = data[i];
+                cellLink.appendChild(link);
+                cellPage.textContent = data[i];
+                row.appendChild(cellLink);
+                row.appendChild(cellPage);
+                tableBody.appendChild(row);
+            }
+
+            message.innerHTML = `Valid range: 1 to ${data.length}`;
+        }
+
+        window.onload = function() {
+            document.getElementById("message").innerHTML = `Valid range: 1 to ${data.length}`;
+        }
+    </script>
+</body>
+</html>
+
+    
+</body>
+</html>
